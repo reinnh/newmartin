@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader";
 import CanvasLoader from "../Loader";
 
-const ComputerModel = ({ isMobile }) => {
+const BuildingStructureModel = ({ isMobile }) => {
   const { scene } = useGLTF(
     "/sci_building/scene.gltf",
     undefined,
@@ -36,9 +36,9 @@ const ComputerModel = ({ isMobile }) => {
   );
 };
 
-const MemoizedComputerModel = React.memo(ComputerModel);
+const MemoizedBuildingStructureModel = React.memo(BuildingStructureModel);
 
-const ComputersCanvas = () => {
+const BuildingStructuresCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -69,11 +69,11 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <MemoizedComputerModel isMobile={isMobile} />
+        <MemoizedBuildingStructureModel isMobile={isMobile} />
       </Suspense>
       <Preload all />
     </Canvas>
   );
 };
 
-export default ComputersCanvas;
+export default BuildingStructuresCanvas;

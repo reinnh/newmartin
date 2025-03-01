@@ -152,8 +152,7 @@ export const projects = [
       "Conducted a detailed  Inspection to asses  road quality, structural integrity and compliance with enginnering standards for safety and durabilty.",
     tags: [
       { name: "Road Alignment Verification", color: "blue-text-gradient" },
-      { name: "Material Testing and Evaluation", color: "green-text-gradient" },
-      { name: "Material Testing and Evaluation", color: "pink-text-gradient" },
+      { name: "Material Testing and Evaluation", color: "green-text-gradient" }
     ],
     image: rinspection,
     source_code_link:
