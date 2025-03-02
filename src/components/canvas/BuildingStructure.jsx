@@ -16,7 +16,6 @@ const BuildingStructureModel = ({ isMobile }) => {
 
   return (
     <mesh>
-      <hemisphereLight intensity={0.15} groundColor="black" />
       <spotLight
         position={[-20, 50, 10]}
         angle={0.12}
@@ -28,9 +27,9 @@ const BuildingStructureModel = ({ isMobile }) => {
       <pointLight intensity={1} />
       <primitive
         object={scene}
-        scale={isMobile ? 0.05 : 0.05}
-        position={isMobile ? [0, -7, -2.2] : [0, -7, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
+        scale={isMobile ? 0.03 : 0.04}
+        position={isMobile ? [0, -7, -2] : [0, -5, -3]}
+        rotation={[0, 3, 0]}
       />
     </mesh>
   );
