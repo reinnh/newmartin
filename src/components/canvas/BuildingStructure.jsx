@@ -6,7 +6,7 @@ import CanvasLoader from "../Loader";
 
 const BuildingStructureModel = ({ isMobile }) => {
   const { scene } = useGLTF(
-    "./building/scene.gltf",
+    "./sci-fi_building_4.glb",
     undefined,
     (loader) => {
       const dracoLoader = new DRACOLoader();
