@@ -1,0 +1,534 @@
+import React from "react";
+
+const PortfolioPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-100 p-8">
+      <header className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-800">My Portfolio</h1>
+        <p className="text-lg text-gray-600">Interior and Exterior Designs</p>
+      </header>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {[...Array(20)].map((_, index) => (
+          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img
+              src={`https://via.placeholder.com/300?text=Image+${index + 1}`}
+              alt={`Design ${index + 1}`}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <h2 className="text-xl font-semibold text-gray-700">Design {index + 1}</h2>
+              <p className="text-gray-600">A brief description of the design.</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default PortfolioPage;
+
+
+home
+
+const Page = () => {
+  return (
+    <div className="bg-gray-100 min-h-screen p-6">
+      <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">
+          Welcome to My Page
+        </h1>
+        <p className="text-gray-700 text-center mb-6">
+          This is a simple page using Tailwind CSS in a JSX format.
+        </p>
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 bg-blue-100 p-4 rounded-lg shadow">
+            <h2 className="text-lg font-semibold text-blue-800">Section 1</h2>
+            <p className="text-blue-700">This is the first section content.</p>
+          </div>
+          <div className="flex-1 bg-green-100 p-4 rounded-lg shadow">
+            <h2 className="text-lg font-semibold text-green-800">Section 2</h2>
+            <p className="text-green-700">This is the second section content.</p>
+          </div>
+        </div>
+        <div className="mt-6 text-center">
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+            Click Me
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Page;
+
+staff
+
+import React from "react";
+import "./styles.css"; // Assuming you have external styles
+
+const Extranet = () => {
+  return (
+    <div className="authentication">
+      <div className="container">
+        <div className="row">
+          <div style={{ marginTop: "50px" }} className="col-lg-4 col-sm-12">
+            <form id="login-form" className="card auth_form" action="/site/login" method="post">
+              <input
+                type="hidden"
+                name="_tumWebApps"
+                value="Lh1-tqMtvE9__VsW1QFqh3xKet-cWqu4PhJvhMjw6rpLXgzC5UuLK06LbCKebybxDAs_lcYi-Il4fl_FiZTS7Q=="
+              />
+              <div className="header">
+                <img className="logo" src="/assets/aero/images/logo.svg" alt="Logo" />
+                <h5>Log in</h5>
+              </div>
+              <div className="body">
+                <div className="form-group field-loginform-username required has-error">
+                  <input
+                    type="text"
+                    id="loginform-username"
+                    className="form-control"
+                    name="LoginForm[username]"
+                    autoFocus
+                    placeholder="Username"
+                    aria-required="true"
+                    aria-invalid="true"
+                  />
+                  <p className="help-block help-block-error">Username cannot be blank.</p>
+                </div>
+                <div className="form-group field-loginform-password required">
+                  <input
+                    type="password"
+                    id="loginform-password"
+                    className="form-control"
+                    name="LoginForm[password]"
+                    placeholder="Password"
+                    aria-required="true"
+                  />
+                  <p className="help-block help-block-error"></p>
+                </div>
+                <div className="form-group field-loginform-rememberme">
+                  <input type="hidden" id="loginform-rememberme" className="form-control" name="LoginForm[rememberMe]" value="1" />
+                  <p className="help-block help-block-error"></p>
+                </div>
+                <button type="submit" className="btn btn-primary btn-block" name="login-button">
+                  Login to Dashboard
+                </button>
+                <a href="#" className="mb-0 pull-right">
+                  <i>Forgot Password?</i>
+                </a>
+              </div>
+            </form>
+          </div>
+
+          <div className="col-lg-8 col-sm-12">
+            <div className="card">
+              <img src="/assets/aero/images/signin.svg" alt="Sign In" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Extranet;
+
+
+
+hr portal
+
+import React, { useState } from "react";
+import "./HRPortal.css"; // Assuming you have some styles
+import swal from "sweetalert";
+
+const HRPortal = () => {
+    const [showOTP, setShowOTP] = useState(false);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [otp, setOtp] = useState("");
+    const [email, setEmail] = useState("");
+
+    // Toggle password visibility
+    const togglePassword = () => {
+        let input = document.getElementById("password");
+        input.type = input.type === "password" ? "text" : "password";
+    };
+
+    // Login Function
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch("./endpoints/login/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+
+            if (data.success === 0) {
+                swal({ text: data.message, icon: "warning", timer: 2000 });
+            } else if (data.success === 1) {
+                swal({ text: data.message, icon: "success", timer: 2000 }).then(() => {
+                    window.location.href = "./?appid=HR";
+                });
+            } else if (data.success === 2) {
+                setShowOTP(true);
+                setEmail(data.email);
+            }
+        } catch (error) {
+            swal({ text: "Login failed!", icon: "error", timer: 2000 });
+        }
+    };
+
+    // OTP Verification
+    const handleOTPVerification = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch("./endpoints/login_otp/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ otp }),
+            });
+
+            const data = await response.json();
+
+            if (data.success === 1) {
+                swal({ text: data.message, icon: "success", timer: 1000 }).then(() => {
+                    window.location.href = "./?appid=HR";
+                });
+            } else {
+                swal({ text: data.message, icon: "warning", timer: 5000 });
+            }
+        } catch (error) {
+            swal({ text: "OTP verification failed!", icon: "error", timer: 5000 });
+        }
+    };
+
+    return (
+        <div className="container">
+            <div className="codrops-top">
+                <a href="./"><strong>HRMS</strong></a>
+                <span className="right">
+                    <a href="#"><strong>Help</strong></a>
+                </span>
+            </div>
+
+            <header>
+                <h1><strong>Technical University of Mombasa</strong></h1>
+                <h2>Human Resource Management System</h2>
+            </header>
+
+            {/* Login Form */}
+            {!showOTP ? (
+                <section className="main">
+                    <form onSubmit={handleLogin}>
+                        <h1>
+                            <span className="log-in">Log in</span> to <span className="sign-up">TUM</span>
+                        </h1>
+                        <p className="float">
+                            <label htmlFor="login">Username</label>
+                            <input
+                                type="text"
+                                id="login"
+                                placeholder="Username or email"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                autoComplete="off"
+                            />
+                        </p>
+                        <p className="float">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                autoComplete="off"
+                            />
+                        </p>
+                        <p className="opt">
+                            <input type="checkbox" onClick={togglePassword} />
+                            <label>Show password</label>
+                        </p>
+                        <p className="clearfix">
+                            <button type="submit">Log in</button>
+                            <a href=".?act=ForgotPassword" className="forgotpass">Forgot Password</a>
+                        </p>
+                    </form>
+                </section>
+            ) : (
+                // OTP Verification
+                <section className="main">
+                    <form onSubmit={handleOTPVerification}>
+                        <h1>A login attempt detected from a new device</h1>
+                        <p>Enter the OTP sent to <span className="sign-up">{email}</span></p>
+                        <p className="clearfix">
+                            <input
+                                type="text"
+                                id="otp"
+                                value={otp}
+                                onChange={(e) => setOtp(e.target.value)}
+                                autoComplete="off"
+                                style={{ fontSize: "18px", width: "300px" }}
+                            />
+                        </p>
+                        <p className="clearfix">
+                            <button type="submit" className="btn_otp">Verify OTP</button>
+                        </p>
+                    </form>
+                </section>
+            )}
+        </div>
+    );
+};
+
+export default HRPortal;
+
+
+elearning
+
+import React from "react";
+import "./Elearning.css"; // Ensure you create a corresponding CSS file for styles
+
+const Elearning = () => {
+  return (
+    <div id="page-wrapper">
+      <div id="page" className="container-fluid mt-0">
+        <div id="page-content" className="row">
+          <div id="region-main-box" className="col-12">
+            <section id="region-main" className="col-12">
+              <span className="notifications" id="user-notifications"></span>
+
+              <div className="row justify-content-center logo">
+                <img
+                  src="//elearning.tum.ac.ke/pluginfile.php/1/theme_moove/logo/1725619132/TUM%20Logo.jpg"
+                  title="TUM E-Learning Portal"
+                  alt="TUM E-Learning Portal"
+                />
+              </div>
+
+              <div className="row justify-content-center my-4">
+                <div className="col-12 col-md-12 col-lg-8">
+                  <div className="card loginpanel">
+                    <div className="card-block">
+                      <div className="row">
+                        {/* Instructions Section */}
+                        <div className="col-md-7 instructions">
+                          <h2>TUM E-Learning Portal</h2>
+                          <hr align="left" />
+
+                          <div className="m-t-1">
+                            <i className="fa fa-check-circle-o"></i> Cookies must
+                            be enabled in your browser
+                          </div>
+
+                          <div className="m-t-2">
+                            <p>
+                              <i className="fa fa-user-circle-o"></i> Some courses
+                              may allow guest access
+                            </p>
+                            <form action="https://elearning.tum.ac.ke/login/index.php" method="post">
+                              <input type="hidden" name="logintoken" value="PXmSPuO3gIhTxsKxNJy6BcfwNQv0tw8H" />
+                              <input type="hidden" name="username" value="guest" />
+                              <input type="hidden" name="password" value="guest" />
+                              <button className="btn btn-secondary" type="submit">
+                                Log in as a guest
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+
+                        {/* Login Form */}
+                        <div className="col-md-5 form">
+                          <form action="https://elearning.tum.ac.ke/login/index.php" method="post">
+                            <p className="welcome">Already have an account?</p>
+
+                            <label htmlFor="username" className="sr-only">
+                              Username
+                            </label>
+                            <div className="input-group input-group-username">
+                              <span className="input-group-addon">
+                                <i className="fa fa-user-circle"></i>
+                              </span>
+                              <input
+                                type="text"
+                                name="username"
+                                id="username"
+                                className="form-control"
+                                placeholder="Username"
+                              />
+                            </div>
+
+                            <label htmlFor="password" className="sr-only">
+                              Password
+                            </label>
+                            <div className="input-group input-group-password">
+                              <span className="input-group-addon">
+                                <i className="fa fa-lock"></i>
+                              </span>
+                              <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                className="form-control"
+                                placeholder="Password"
+                              />
+                            </div>
+
+                            <div className="rememberpass m-t-1">
+                              <input
+                                type="checkbox"
+                                name="rememberusername"
+                                id="rememberusername"
+                                value="1"
+                              />
+                              <label htmlFor="rememberusername">Remember username</label>
+                            </div>
+
+                            <button type="submit" className="btn btn-primary btn-block">
+                              Log in
+                            </button>
+                          </form>
+
+                          <div className="forgetpass m-t-1">
+                            <p>
+                              <a href="https://elearning.tum.ac.ke/login/forgot_password.php">
+                                Forgotten your username or password?
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Elearning;
+
+
+
+industrial attacment 
+
+
+
+import React from "react";
+import "./IndustrialAttachment.css"; // Ensure you have the relevant CSS
+
+const IndustrialAttachment = () => {
+  return (
+    <div className="vertical-layout 1-column blank-page blank-page pace-done menu-hide vertical-overlay-menu" data-open="click" data-menu="vertical-menu" data-col="1-column">
+      <div className="pace pace-inactive">
+        <div className="pace-progress" data-progress-text="100%" data-progress="99" style={{ transform: "translate3d(100%, 0px, 0px)" }}>
+          <div className="pace-progress-inner"></div>
+        </div>
+        <div className="pace-activity"></div>
+      </div>
+
+      {/* BEGIN: Content */}
+      <div className="app-content content">
+        <div className="content-overlay"></div>
+        <div className="content-wrapper">
+          <div className="content-header row"></div>
+          <div className="content-body">
+            <section className="row flexbox-container">
+              <div className="col-12 d-flex align-items-center justify-content-center">
+                <div className="col-lg-4 col-md-8 col-10 box-shadow-2 p-0">
+                  <div className="center text-center">
+                    <div id="lmsgbox"></div>
+                    <h1>
+                      <img src="https://iap.tum.ac.ke/app-assets/images/ico/favicon.ico" alt="IAP Logo" />
+                    </h1>
+                    <h4 className="red" id="id-company-text">
+                      Industrial Attachment Portal (IAP)
+                    </h4>
+                  </div>
+                  <div className="card border-grey border-lighten-3 m-0">
+                    <div id="loginmsgbox"></div>
+                    <div className="card-header border-0">
+                      <h6 className="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
+                        <span>Login to IAP</span>
+                      </h6>
+                    </div>
+                    <div className="card-content">
+                      <div className="card-body">
+                        <form className="form-horizontal" method="post" noValidate>
+                          <fieldset className="form-group position-relative has-icon-left">
+                            <input type="text" className="form-control" id="user-name" name="uname" placeholder="Username" required />
+                            <div className="form-control-position">
+                              <i className="feather icon-user"></i>
+                            </div>
+                          </fieldset>
+                          <fieldset className="form-group position-relative has-icon-left">
+                            <input type="password" className="form-control" id="user-password" name="pwd" placeholder="Enter Password" required />
+                            <div className="form-control-position">
+                              <i className="fa fa-key"></i>
+                            </div>
+                          </fieldset>
+                          <button type="submit" className="btn btn-outline-primary btn-block" id="loginbtn">
+                            <i className="feather icon-unlock"></i> Login
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                    <div className="card-footer">
+                      <div>
+                        <p className="float-sm-left text-center m-0">
+                          <a href="https://iap.tum.ac.ke/users/recover" className="card-link">
+                            Recover password
+                          </a>
+                        </p>
+                        <p className="float-sm-right text-center m-0">
+                          New to IAP?{" "}
+                          <a href="https://iap.tum.ac.ke/users/register" className="card-link">
+                            Sign Up
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      {/* END: Content */}
+
+      {/* Scripts */}
+      <script src="https://iap.tum.ac.ke/app-assets/vendors/js/vendors.min.js"></script>
+      <script src="https://iap.tum.ac.ke/app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
+      <script src="https://iap.tum.ac.ke/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js"></script>
+      <script src="https://iap.tum.ac.ke/app-assets/js/core/app-menu.js"></script>
+      <script src="https://iap.tum.ac.ke/app-assets/js/core/app.js"></script>
+      <script src="https://iap.tum.ac.ke/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+      <script src="https://iap.tum.ac.ke/app-assets/js/scripts/forms/form-login-register.js"></script>
+      <script src="https://iap.tum.ac.ke/assets/js/users.js"></script>
+      <script src="https://iap.tum.ac.ke/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+      <script src="https://iap.tum.ac.ke/app-assets/js/scripts/extensions/sweet-alerts.min.js"></script>
+    </div>
+  );
+};
+
+export default IndustrialAttachment;
+
+
+
+
+
+

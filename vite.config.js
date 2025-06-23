@@ -6,7 +6,7 @@ export default defineConfig({
   base:"/newmartin",
   server: {
     host: true, // Allows access from the local network
-    port: 5173, // Optional: specify the port
+    port: 5172, // Optional: specify the port
   },
 });
 

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
+import axios from "axios";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
@@ -65,24 +65,25 @@ const Contact = () => {
 
     setLoading(true);
 
-    emailjs
-      .send(
-        "service_qd4qc0l",
-        
-        "template_o5g2wjh",
+    axios
+      .post("https://macro-server.onrender.com/app2/contacts/create", 
         {
-          from_name: form.name,
-          to_name: "Martin kudondo",
-          from_email: form.email,
-          to_email: "kudondomartin@gmail.com",
+          name: form.name,
+          email: form.email,
           message: form.message,
         },
-        "K9jn5ayDSe2n5vtKj"
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true, // Include credentials for CORS
+          credentials: "include", // Ensure cookies are sent with the request
+        }
       )
       .then(
         () => {
           setLoading(false);
-          setConfirmation("Thank you! I will get back to you as soon as possible.");
+          setConfirmation("Thank you! We will get back to you as soon as possible.");
 
           setForm({
             name: "",
@@ -130,7 +131,7 @@ const Contact = () => {
             name="message"
             value={form.message}
             onChange={handleChange}
-            placeholder="What you want to say...?"
+            placeholder="How can we assist you..?"
             type="text"
           />
 
