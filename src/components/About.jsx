@@ -33,13 +33,15 @@ const About = () => {
         <h2 className={styles.sectionHeadText}>Overview</h2>
       </div>
 
-      <p
+      <div
         variants={fadeIn('', '', 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
        A dedicated Civil Engineering professional with hands-on experience in structural design, site supervision, and project execution. Passionate about delivering innovative, high-quality, and sustainable engineering solutions. Committed to precision, efficiency, and modern best practices in every project.
        Work Experience
-      </p>
+       <button onClick={()=>window.open('/matincv.pdf')}
+       className='text-green-500   rounded-lg px-3 bg-gray-800 ml-5 hover:border-none active:opacity-50 hover:text-green-400' >see my cv</button>
+      </div>
 
      
     </>
