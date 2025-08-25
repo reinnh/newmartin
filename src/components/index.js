@@ -9,6 +9,7 @@ import About from "./About";
 import Experience from "./Experience";
 import Works from "./Works";
 import Contact from "./Contact";
+import NewWork from "./new_works";
 
 export {
   Hero,
@@ -19,4 +20,5 @@ export {
   Contact,
   EarthCanvas,
   StarsCanvas,
+  NewWork
 };

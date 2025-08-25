@@ -6,6 +6,11 @@ import calvat from '../assets/projects/calvat.jpg'
 import pileDrilling from '../assets/projects/project5.jpg'
 import rinspection from '../assets/projects/rinspection.jpg'
 import surveying from '../assets/projects/project8.jpg'
+import tower from '../assets/newprojects/tower.jpg'
+import base from '../assets/newprojects/baseplan.jpg'
+import base2 from '../assets/newprojects/base2.jpg'
+import tower1 from '../assets/newprojects/tower1.jpg'
+import tower3 from '../assets/newprojects/tower3.jpg'
 
 import {
   edunet,
@@ -68,6 +73,32 @@ export const experiences = [
   },
 ];
 
+export const newprojects = [
+  {
+    name: "Three Star Tower Apartment",
+    description:
+      "A modern residential tower offering premium living spaces with top-notch amenities and stunning views.",
+    image: tower,
+    source_code_link: "",
+  },
+  {
+    name: "Three Star Tower Apartment Right side view",
+    description:
+      "A modern residential tower ",
+    image: tower1,
+    source_code_link: "",
+  },
+  {
+    name: "Three Star Tower Apartment left side view",
+    description:
+      "Quality design and construction",
+    image:tower3,
+    source_code_link:
+      "",
+  },
+
+]
+
 export const projects = [
   {
     name: "Chwele Road Surface Dressing/Chipping",
@@ -92,19 +123,6 @@ export const projects = [
     ],
     image: foundation,
     source_code_link: "",
-  },
-  {
-    name: "Three Star Tower Apartment Quality Control",
-    description:
-      "Ensured Construction  quality through material inspections ,compliance enforcementand structural integrity assesments.",
-    tags: [
-      { name: "Quality Assurance", color: "blue-text-gradient" },
-      { name: "Material Testing", color: "green-text-gradient" },
-      { name: "Technical Reporting", color: "pink-text-gradient" },
-    ],
-    image: photo,
-    source_code_link:
-      "",
   },
   {
     name: "Malikisi Road Survey",
